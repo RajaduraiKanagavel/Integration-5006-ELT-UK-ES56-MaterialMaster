@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:camel="http://camel.apache.org/schema/spring"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd        http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
+    <import resource="./NP05-MovingAveragePrice-BeanDefinition.xml"/>
+    <import resource="./NP05-MovingAveragePrice-TransformationRoute.xml"/>
+    <camelContext id="camelContext-Packs" streamCache="true"
+        trace="false" xmlns="http://camel.apache.org/schema/spring">
+        <routeContextRef ref="Id_MovingAveragePriceTransformationRoute"/>
+        <endpoint id="MovingAveragePrice_SAP_To_CDM_Transformation" uri="dozer:MovingAveragePrice_SAP_To_CDM_Transformation?sourceModel=com.oup.integration.sps.movingaverageprice.sap.pojo.MovingAveragePriceSAP&amp;targetModel=com.oup.integration.sps.movingaverageprice.cdm.pojo.MovingAveragePriceCDM&amp;mappingFile=Transformations/MovingAveragePrice_SAP_To_CDM_Transformation.xml"/>
+        <endpoint id="MovingAveragePrice_CDM_To_Biblio_Transformation" uri="dozer:MovingAveragePrice_CDM_To_Biblio_Transformation?sourceModel=com.oup.integration.sps.movingaverageprice.cdm.pojo.MovingAveragePriceCDM&amp;targetModel=com.oup.integration.sps.movingaverageprice.biblio.pojo.MovingAveragePriceBiblio&amp;marshalId=transform-json&amp;mappingFile=Transformations/MovingAveragePrice_CDM_To_Biblio_Transformation.xml"/>
+        <dataFormats>
+            <json id="transform-json" library="Jackson"/>
+        </dataFormats>
+        <route id="route_NP05">
+            <from id="Id" uri="ftp:gboxfftpwin.uk.oup.com:21//nepps2_dev/Import?password=12Xdirect&amp;username=ftpunix&amp;passiveMode=true&amp;filter=#FileFilter&amp;doneFileName=${file:name.noext}.go&amp;include=.*.dat&amp;move=#FileRename"/>            
+            <setHeader headerName="RequestReceivedTime" id="Id_RequestReceivedTimeFromBiblioForSR">
+                <simple>${date:now:HHmmssSSS}</simple>
+            </setHeader>
+            <setHeader headerName="InterfaceName" id="Id_InterfaceNameForSR">
+                <simple>np05</simple>
+            </setHeader>
+            <log id="Id_StartingSplitPacks" logName="com.oup.sps"
+                loggingLevel="INFO" message="Incoming SAP Request ${body}"/>
+            <to id="id_BackUpReceivedFile" uri="file:{{file.backup.location}}/1.0 ReceivedFromSAP?fileName=${date:now:yyyy/MM/dd/}$simple{header.DestinationFileName}_$simple{header.RequestReceivedTime}.dat"/>
+            <camel:convertBodyTo id="_convertBodyTo1" type="String"/>
+            
+            <split id="splitBynewLine" streaming="true">
+                <tokenize token="\r\n|\n" trim="true"/>
+                <choice id="choiceFilter">
+                    <when id="whenCondition">
+                        <simple>${header.CamelSplitComplete} == "false" and ${header.CamelSplitIndex} != 0 </simple>
+                        <log id="_log2" logName="com.oup.sps"
+                            loggingLevel="INFO" message="inside split ${body}"/>
+                        
+                        <unmarshal id="Id_unmarshalRequisitionsCSV">
+                            <bindy
+                                classType="com.oup.integration.sps.movingaverageprice.sap.pojo.MovingAveragePriceSAP" type="Csv"/>
+                        </unmarshal>            
+                        <to id="_to2" uri="direct:transform_sap_to_cdm"/>
+                        <to id="_to3" uri="direct:transform_cdm_to_biblio"/>
+                        <log id="NP05logger" logName="com.oup.sps"
+                            loggingLevel="INFO" message="Processing SAP split Message ${body}"/>
+                        <to id="_to1" uri="activemq:queue:SPS-ELT-UK-MOVING-AVERAGE-DEV"/>
+                        <log id="NP05logge" logName="com.oup.sps"
+                            loggingLevel="INFO" message="Message persisted to queue"/>
+                    </when>
+                </choice>
+            </split>
+
+        </route>
+    </camelContext>
+</beans>

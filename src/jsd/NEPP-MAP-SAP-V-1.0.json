@@ -1,0 +1,56 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$id": "http://oup.com/sps/MovingAveragePriceSAP.json",
+    "type": "array",
+    "items": {
+        "$id": "http://oup.com/sps/MovingAveragePriceSAP.json/items",
+        "type": "object",
+        "properties": {
+            "productISBN": {
+                "$id": "http://oup.com/sps/MovingAveragePriceSAP.json/items/properties/productISBN",
+                "type": "string",
+                "title": "Product ISBN",
+                "maxLength": 18,
+                "default": "",
+                "examples": ["9782314569632"]
+            },
+            "shortText": {
+                "$id": "http://oup.com/sps/MovingAveragePriceSAP.json/items/properties/shortText",
+                "type": "string",
+                "title": "Material Desc",
+                "maxLength": 40,
+                "default": "",
+                "examples": ["ABCD"]
+            },
+            "impressionNum": {
+                "$id": "http://oup.com/sps/MovingAveragePriceSAP.json/items/properties/impressionNum",
+                "type": "string",
+                "title": "Impression Number",
+                "maxLength": 2,
+                "default": "",
+                "examples": ["01"]
+            },
+            "price": {
+                "$id": "http://oup.com/sps/MovingAveragePriceSAP.json/items/properties/price",
+                "type": "number",
+                "multipleOf": ".01",
+                "title": "Moving Average Price/Periodic Unit Price",
+                "default": "",
+                "examples": ["100.23"]
+            },
+            "prodHierarchy": {
+                "$id": "http://oup.com/sps/MovingAveragePriceSAP.json/items/properties/prodHierarchy",
+                "type": "string",
+                "title": "Product hierarchy",
+                "maxLength": "18",
+                "examples": ["abcd"]
+            }
+        },
+        "required": [
+            "productISBN",
+            "impressionNum",
+            "price",
+            "prodHierarchy"
+        ]
+    }
+}

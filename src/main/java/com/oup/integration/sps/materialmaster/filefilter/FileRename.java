@@ -1,4 +1,4 @@
-package com.oup.integration.sps.movingaverageprice.filefilter;
+package com.oup.integration.sps.materialmaster.filefilter;
 
 import org.apache.camel.Exchange;
 import org.apache.camel.Expression;

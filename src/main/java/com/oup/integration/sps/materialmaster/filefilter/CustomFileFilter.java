@@ -1,4 +1,4 @@
-package com.oup.integration.sps.movingaverageprice.filefilter;
+package com.oup.integration.sps.materialmaster.filefilter;
 
 import org.apache.camel.component.file.GenericFile;
 import org.apache.camel.component.file.GenericFileFilter;
@@ -11,6 +11,6 @@ public class CustomFileFilter<T> implements GenericFileFilter<T> {
 		 // we only want report files 
 		
 	
-        return file.getFileName().startsWith("np05");
+        return file.getFileName().startsWith("es");
 	}
 }

@@ -8,10 +8,10 @@
 	    
    
     <bean
-        class="com.oup.integration.sps.movingaverageprice.filefilter.CustomFileFilter" id="FileFilter"/>
+        class="com.oup.integration.sps.materialmaster.filefilter.CustomFileFilter" id="FileFilter"/>
         
         <bean
-        class="com.oup.integration.sps.movingaverageprice.filefilter.FileRename" id="FileRename"/>
+        class="com.oup.integration.sps.materialmaster.filefilter.FileRename" id="FileRename"/>
      
   
 </beans>

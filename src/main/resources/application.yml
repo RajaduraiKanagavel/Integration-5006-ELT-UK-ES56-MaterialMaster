@@ -1,6 +1,6 @@
 spring:
   application:
-    name: ELT-UK-NP05-MOVING-AVERAGE-PRICE
+    name: ELT-UK-ES56-MATERIAL-MASTER
   activemq:
     broker-url: tcp://localhost:61616
     user: admin
@@ -20,11 +20,11 @@ serviceaccount:
   password: password   
 
 activemq:
-    queuename: queue:SPS-ELT-UK-MOVING-AVERAGE-DEV
+    queuename: queue:SPS-ELT-UK-MATERIAL-MASTER-DEV
           
 file:
   backup:
-    location: C:\\JavaTest\\SPS\\NP05_ELTUKMAP\\      
+    location: C:\\JavaTest\\SPS\\ES56_ELTUKMAP\\      
 ftp:
   drop:
     location: nepps2_dev/export
@@ -46,11 +46,11 @@ serviceaccount:
   password: password   
 
 activemq:
-    queuename: queue:SPS-ELT-UK-MOVING-AVERAGE-DEV
+    queuename: queue:SPS-ELT-UK-MATERIAL-MASTER-DEV
           
 file:
   backup:
-    location: C:\\JavaTest\\SPS\\NP05_ELTUKMAP\\      
+    location: C:\\JavaTest\\SPS\\ES56_ELTUKMAP\\      
 ftp:
   drop:
     location: nepps2_dev/export

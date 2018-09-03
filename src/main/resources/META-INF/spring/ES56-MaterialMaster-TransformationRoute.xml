@@ -1,17 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd                            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd">
-    <routeContext id="Id_MovingAveragePriceTransformationRoute" xmlns="http://camel.apache.org/schema/spring">
+    <routeContext id="Id_MaterialMasterTransformationRoute" xmlns="http://camel.apache.org/schema/spring">
         <route id="id_RouteToGenerateIndividualMAPCDM">
-            <from uri="direct:transform_sap_to_cdm"/>   
-			<to uri="ref:MovingAveragePrice_SAP_To_CDM_Transformation"/>           
+            <from id="_from1" uri="direct:transform_sap_to_cdm"/>
+            <to id="SAPtoCDM" uri="ref:Materialmaster_SAP_To_CDM_Transformation"/>
         </route>
-        
         <route id="id_RouteToGenerateIndividualFVSAP">
-            <from uri="direct:transform_cdm_to_biblio"/>            
-            <to uri="ref:MovingAveragePrice_CDM_To_Biblio_Transformation"/>    
-                    
+            <from id="_from2" uri="direct:transform_cdm_to_biblio"/>
+            <to id="CDMtoBiblio" uri="ref:Materialmaster_CDM_To_Biblio_Transformation"/>
         </route>
-                       
     </routeContext>
 </beans>

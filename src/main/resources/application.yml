@@ -27,7 +27,7 @@ file:
     location: C:\\JavaTest\\SPS\\ES56_ELTUKMAP\\      
 ftp:
   drop:
-    location: nepps2_dev/export
+    location: nepps2_dev/Import
 
 ---  
 spring:
@@ -53,4 +53,4 @@ file:
     location: C:\\JavaTest\\SPS\\ES56_ELTUKMAP\\      
 ftp:
   drop:
-    location: nepps2_dev/export
+    location: nepps2_dev/Import

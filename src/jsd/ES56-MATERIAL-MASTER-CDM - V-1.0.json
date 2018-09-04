@@ -1,0 +1,131 @@
+{
+    "$id": "http://oup.com/sps/MaterialMasterCDM.json",
+    "type": "object",
+    "properties": {
+        "productISBN": {
+            "$id": "/properties/productISBN",
+            "type": "string",
+            "title": "Material Number",
+            "description": "SAP-PI-->MATNR",
+            "default": "",
+            "examples": ["ABCD"],
+            "maxLength": 18
+        },
+        "seriesCode": {
+            "$id": "/properties/seriesCode",
+            "type": "string",
+            "title": "Higher-Level Media Product",
+            "description": "SAP-PI-->ISMREFMDPROD ",
+            "default": "",
+            "examples": [""]
+        },
+        "mediaType": {
+            "$id": "/properties/mediaType",
+            "type": "string",
+            "title": "Media type",
+            "description": "SAP-PI-->ISMMEDIATYPE",
+            "default": "",
+            "examples": [""]
+        },
+        "publicationDate": {
+            "$id": "/properties/publicationDate",
+            "type": "string",
+            "title": "Publication Date (YYYYMMDD)",
+            "description": "SAP-PI-->ISMPUBLDATE",
+            "default": "",
+            "examples": [""]
+        },
+        "priceIsPrinted": {
+            "$id": "/properties/priceIsPrinted",
+            "type": "string",
+            "title": "Explode BOM & Commodity Code ",
+            "description": "SAP-PI-->FLAG1",
+            "default": "true"
+        },
+        "shortTitle": {
+            "$id": "/properties/shortTitle",
+            "type": "string",
+            "title": "Material Description",
+            "description": "SAP-PI-->MAKTX ",
+            "default": "",
+            "examples": [""]
+        },
+        "salesStatus": {
+            "$id": "/properties/salesStatus",
+            "type": "string",
+            "title": "Cross-distribution-chain material status",
+            "description": "SAP-PI-->MSTAV ",
+            "default": ""
+        },
+        "productHierarchy": {
+            "$id": "/properties/productHierarchy",
+            "type": "string",
+            "title": "Product hierarchy",
+            "description": "SAP-PI-->PRODH ",
+            "default": ""
+        },
+        "marketSAP": {
+            "$id": "/properties/marketSAP",
+            "type": "string",
+            "title": "Market Sector",
+            "description": "SAP-PI-->ZMARKET_SECTOR ",
+            "default": ""
+        },
+        "packType": {
+            "$id": "/properties/packType",
+            "type": "string",
+            "title": "Pack Information",
+            "description": "SAP-PI-->ZPACK_INFO ",
+            "default": ""
+        },
+        "productTypeSAP": {
+            "$id": "/properties/productTypeSAP",
+            "type": "string",
+            "title": "Product type",
+            "description": "SAP-PI-->ZPRODUCT_TYPE ",
+            "default": ""
+        },
+        "authorOrArtist": {
+            "$id": "/properties/authorOrArtist",
+            "type": "string",
+            "title": "Author/Artist",
+            "description": "MARA-ISMARTIST",
+            "default": ""
+        },
+        "price": {
+            "$id": "/properties/price",
+            "type": "number",
+            "title": "Author/Artist",
+            "description": "KONP-KBETR",
+            "default": ""
+        },
+        "salesStatusValidFrom": {
+            "$id": "/properties/salesStatusValidFrom",
+            "type": "string",
+            "title": "Sales Status Valid from",
+            "description": "MARA-MSTDV",
+            "default": ""
+        },
+        "purchaseStatus": {
+            "$id": "/properties/purchaseStatus",
+            "type": "string",
+            "title": "Purchasing Status",
+            "description": "MARC-MMSTA",
+            "default": ""
+        },
+        "purchaseStatusValidFrom": {
+            "$id": "/properties/purchaseStatusValidFrom",
+            "type": "string",
+            "title": "Purchasing Status Valid from",
+            "description": "MARC-MMSTD",
+            "default": ""
+        },
+        "responsibleEditor": {
+            "$id": "/properties/responsibleEditor",
+            "type": "string",
+            "title": "Responsible Editor",
+            "description": "MARA-ZRESPONSIBLE_EDT",
+            "default": ""
+        }
+    }
+}

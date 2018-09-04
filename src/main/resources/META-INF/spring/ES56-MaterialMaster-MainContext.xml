@@ -13,7 +13,7 @@
             <json id="transform-json" library="Jackson"/>
         </dataFormats>
         <route id="route_ES56">
-            <from id="Id" uri="ftp:gboxfftpwin.uk.oup.com:21//nepps2_dev/Import?password=12Xdirect&amp;username=ftpunix&amp;passiveMode=true&amp;filter=#FileFilter&amp;doneFileName=${file:name.noext}.go&amp;include=.*.dat&amp;move=#FileRename"/>
+            <from id="Id" uri="ftp:gboxfftpwin.uk.oup.com:21//{{ftp.drop.location}}?password=12Xdirect&amp;username=ftpunix&amp;passiveMode=true&amp;filter=#FileFilter&amp;doneFileName=${file:name.noext}.go&amp;include=.*.dat&amp;move=#FileRename"/>
             <setHeader headerName="RequestReceivedTime" id="Id_RequestReceivedTimeFromBiblioForSR">
                 <simple>${date:now:HHmmssSSS}</simple>
             </setHeader>
@@ -24,7 +24,7 @@
                 loggingLevel="INFO" message="Incoming SAP Request ${body}"/>
             <to id="id_BackUpReceivedFile" uri="file:{{file.backup.location}}/1.0 ReceivedFromSAP?fileName=${date:now:yyyy/MM/dd/}$simple{header.DestinationFileName}_$simple{header.RequestReceivedTime}.dat"/>
             <camel:convertBodyTo id="_convertBodyTo1" type="String"/>
-            <split id="splitBynewLine" >
+            <split id="splitBynewLine">
                 <tokenize token="\r\n|\n" trim="true"/>
                 <choice id="choiceFilter">
                     <when id="whenCondition">
@@ -39,7 +39,7 @@
                         <to id="_to3" uri="direct:transform_cdm_to_biblio"/>
                         <log id="ES56logger" logName="com.oup.sps"
                             loggingLevel="INFO" message="Processing SAP split Message ${body}"/>
-                        <to id="_to1" uri="activemq:queue:SPS-ELT-UK-MATERIAL-MASTER-DEV"/>
+                        <to id="_to1" uri="activemq:queue:{{activemq.queuename}}"/>
                         <log id="ES56Logger" logName="com.oup.sps"
                             loggingLevel="INFO" message="Message persisted to queue"/>
                     </when>

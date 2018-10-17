@@ -13,7 +13,7 @@
             <json id="transform-json" library="Jackson"/>
         </dataFormats>
         <route id="route_ES56">
-            <from id="Id" uri="ftp:gboxfftpwin.uk.oup.com:21//{{ftp.drop.location}}?password=12Xdirect&amp;username=ftpunix&amp;passiveMode=true&amp;filter=#FileFilter&amp;doneFileName=${file:name.noext}.go&amp;include=.*.dat&amp;move=#FileRename"/>
+            <from id="Id" uri="ftp:{{ftp.drop.server}}:{{ftp.drop.port}}//{{ftp.drop.location}}?password={{ftp.drop.password}}&amp;username={{ftp.drop.username}}&amp;passiveMode=true&amp;filter=#FileFilter&amp;doneFileName=${file:name.noext}.go&amp;include=.*.dat&amp;move=#FileRename"/>
             <setHeader headerName="RequestReceivedTime" id="Id_RequestReceivedTimeFromBiblioForSR">
                 <simple>${date:now:HHmmssSSS}</simple>
             </setHeader>

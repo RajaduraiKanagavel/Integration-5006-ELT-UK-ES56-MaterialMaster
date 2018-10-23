@@ -39,9 +39,9 @@
                         <to id="_to3" uri="direct:transform_cdm_to_biblio"/>
                         <log id="ES56logger" logName="com.oup.sps"
                             loggingLevel="INFO" message="Processing SAP split Message ${body}"/>
-                        <to id="_to1" uri="activemq:queue:{{activemq.queuename}}"/>
+                        <to id="_to1" uri="activemq:{{activemq.queuename}}"/>
                         <log id="ES56Logger" logName="com.oup.sps"
-                            loggingLevel="INFO" message="Message persisted to queue"/>
+                            loggingLevel="INFO" message="Message persisted to queue {{activemq.queuename}} "/>
                     </when>
                 </choice>
             </split>

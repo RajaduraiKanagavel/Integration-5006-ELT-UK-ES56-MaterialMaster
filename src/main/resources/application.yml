@@ -16,7 +16,7 @@ serviceaccount:
   username: servmxdev
   password: password 
 activemq:
-    broker-url: tcp://gboxfamqdev001.uk.oup.com:61616
+    broker-url: tcp://gbsmixdev01.uk.oup.com:63636
     user: servicemix
     password: servicemix@1234  
 
@@ -39,36 +39,27 @@ spring:
   activemq:
     broker-url: tcp://gbsmixdev01.uk.oup.com:63636
     user: servicemix
-    password: servicemix@1234 
-    queuename: queue:SPS-ELT-UK-MATERIAL-MASTER-DEV     
-server:
-  port: 8080  
-
+    password: servicemix@1234
+  
 serviceaccount:
   username: servmxdev
-  password: password   
-
-    
-          
+  password: password
+activemq:  
+    queuename: queue:SPS-ELT-UK-MATERIAL-MASTER-DEV      
 file:
   backup:
     location: /OUT/SPS/${spring.application.name}/dev
 ftp:
-  drop: 
-    server: GBOXFFTPWIN
-    port: 21
-    username: ftpunix
-    password: 12Xdirect
-    location: /nepps2_dev/Import      
- 
+  pickup:
+    location: /nepps2_dev/Import/
+
 eureka:
   client:
     enabled: true
     service-url:  
       defaultZone: http://dev-oupeureka:8761/eureka/
   instance:
-    prefer-ip-address: true   
-
+    prefer-ip-address: true      
 management:
   security:
     enabled: false
@@ -79,7 +70,7 @@ management:
     distribution:
       percentiles[http.server.requests]: 0.95, 0.99
       percentiles-histogram[http.server.requests]: true
-      sla[http.server.requests]: 10ms, 100ms
+      sla[http.server.requests]: 10ms, 100ms 
 ---
 spring:
   profiles: uat

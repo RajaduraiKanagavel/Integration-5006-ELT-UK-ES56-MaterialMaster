@@ -21,9 +21,8 @@
 		<spring-boot-version>1.5.15.RELEASE</spring-boot-version>
 
 		<!-- CI-CD -->
-<!-- 		<build-profile>dev</build-profile>-->
  		<docker-host>http://localhost:2375</docker-host>
-		<docker-image-name>eltukes56materialmaster</docker-image-name>
+		<docker-image-name>elt-uk-es56-materialmaster</docker-image-name>
   </properties>
   <dependencyManagement>
     <dependencies>
